@@ -24,7 +24,13 @@ class DatabaseSeeder extends Seeder
            Post::factory(rand(1,3))->create([
                'user_id' => $user->id,
                'category_id' => ($categories->random(1)->first())->id
-           ]);
+           ])->each(function ($post){
+               Post::factory(rand(1,3))->create([
+                   'user_id' => $post->user_id,
+                   'category_id' => $post->category->id,
+                   'post_id' => $post->id
+               ]);
+           });
         });
     }
 }
