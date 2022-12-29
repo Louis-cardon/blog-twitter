@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',[PostController::class,'index'])->name('posts.index');
-Route::get('/profil/{user}',[UserController::class,'show'])->name('user.profil');
+Route::get('/profil/{user:name}',[UserController::class,'show'])->name('user.profil');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

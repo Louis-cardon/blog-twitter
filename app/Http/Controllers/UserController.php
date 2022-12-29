@@ -46,7 +46,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $postes = $user->post()->get();
+        $postes = $user->post()->where('post_id')->get();
         return view('user.profil',compact('postes','user'));
     }
 

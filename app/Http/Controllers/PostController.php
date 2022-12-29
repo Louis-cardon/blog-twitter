@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
@@ -16,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('category','user','post')->where('post_id')->latest()->get();
+        $posts = Post::with('user','post')->where('post_id')->latest()->get();
         return view('post.index',compact('posts'));
     }
 
@@ -27,8 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('post.create', compact('categories'));
+        return view('post.create');
     }
 
     /**
@@ -40,7 +38,6 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         Post::create([
-            'title' => $request->title,
             'content' => $request->content,
         ]);
 

@@ -17,7 +17,6 @@ class Post extends Model
 
         self::creating(function ($post){
             $post->user()->associate(auth()->user()->id);
-            $post->category()->associate(request()->category);
         });
     }
 
@@ -26,10 +25,6 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    public  function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
 
     public  function post()
     {
