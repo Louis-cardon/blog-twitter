@@ -40,7 +40,7 @@
                                     <span class="font-light text-gray-600">
                                         {{ $post->created_at->format('d M Y') }}
                                     </span>
-                                    <a href="#" class="flex items-center"><img
+                                    <a href="{{route('user.profil',$poste->user->name)}}" class="flex items-center"><img
                                                         src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=731&amp;q=80"
                                                         alt="avatar" class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block">
                                                     <h1 class="font-bold text-gray-700 hover:underline">{{ $post->user->name }}</h1>
@@ -57,20 +57,15 @@
                             @endforeach
                             <div class="ml-10 mt-4">
                                     <div class="max-w-6xl px-10 py-6 mx-auto bg-white rounded-lg shadow-md">
-                                        <div class="flex items-center justify-between">
-                                    <span class="font-light text-gray-600">
-                                        date
-                                    </span>
-                                    <a href="#" class="flex items-center"><img
-                                                        src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=731&amp;q=80"
-                                                        alt="avatar" class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block">
-                                                    <h1 class="font-bold text-gray-700 hover:underline">name</h1>
-                                                </a>
-                                        </div>
                                         <div class="mt-2">
-                                            <p class="mt-2 text-gray-600">
-                                                content
-                                            </p>
+                                            <form action="{{ route('posts.response',$poste)}}" method="post" enctype="multipart/form-data">
+
+                                                @csrf
+                                                <label for="content2" value="Contenu du post"></label>
+                                                <textarea id="content2" name="content2"></textarea>
+
+                                                <button style="display: block !important; " class="mt-5">Créer mon post</button>
+                                            </form>
                                         </div>
 
                                     </div>

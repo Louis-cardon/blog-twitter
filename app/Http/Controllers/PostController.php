@@ -38,7 +38,18 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         Post::create([
-            'content' => $request->content,
+            'content' => $request->content2,
+
+        ]);
+
+        return redirect()->route('dashboard')->with('success','Votre post a été créé');
+    }
+
+    public function response(Post $post,StorePostRequest $request)
+    {
+        Post::create([
+            'content' => $request->content2,
+            'post_id' => $post->id
         ]);
 
         return redirect()->route('dashboard')->with('success','Votre post a été créé');

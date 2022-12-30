@@ -20,8 +20,8 @@
                                         <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
 
                                             @csrf
-                                            <label for="content" value="Contenu du post"></label>
-                                            <textarea id="content" name="content"></textarea>
+                                            <label for="content2" value="Contenu du post"></label>
+                                            <textarea id="content2" name="content2"></textarea>
 
                                             <button style="display: block !important; " class="mt-5">Créer mon post</button>
                                         </form>
