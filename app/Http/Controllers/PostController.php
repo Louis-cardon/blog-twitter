@@ -95,8 +95,10 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroyed(Post $posted)
     {
-        //
+        $posted->delete();
+
+        return redirect()->route('dashboard')->with('success','Votre post a été supprimé');
     }
 }

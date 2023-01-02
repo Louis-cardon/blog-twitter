@@ -31,6 +31,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('posts',PostController::class)->except('index');
     Route::post('/posts/{post}',[PostController::class,'response'])->name('posts.response');
+    Route::post('/destroy/{post}',[PostController::class,'destroy'])->name('posts.destroy');
+    Route::get('/destroyed/{posted}',[PostController::class,'destroyed'])->name('posts.destroyed');
 });
 
 require __DIR__.'/auth.php';

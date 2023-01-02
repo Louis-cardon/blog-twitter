@@ -26,6 +26,13 @@
                                             alt="avatar" class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block">
                                         <h1 class="font-bold text-gray-700 hover:underline">{{ $poste->user->name }}</h1>
                                     </a>
+                                @if(auth()->check())
+                                    @if(auth()->user()->getAuthIdentifier() === $poste->user->id)
+                                        <a href="{{ route('posts.destroyed',$poste)}}" style="display: block !important; " class="mt-5">
+
+                                            Supprimer</a>
+                                    @endif
+                                @endif
                             </div>
                             <div class="mt-2">
                                 <p class="mt-2 text-gray-600">
@@ -33,22 +40,30 @@
                                 </p>
                             </div>
                         </div>
-                            @foreach($poste->post as $post)
+                            @foreach($poste->post as $posted)
                                 <div class="ml-10 mt-4">
+
                                     <div class="max-w-6xl px-10 py-6 mx-auto bg-white rounded-lg shadow-md">
                                         <div class="flex items-center justify-between">
                                     <span class="font-light text-gray-600">
-                                        {{ $post->created_at->format('d M Y') }}
+                                        {{ $posted->created_at->format('d M Y') }}
                                     </span>
-                                    <a href="{{route('user.profil',$poste->user->name)}}" class="flex items-center"><img
+                                    <a href="{{route('user.profil',$posted->user->name)}}" class="flex items-center"><img
                                                         src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=731&amp;q=80"
                                                         alt="avatar" class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block">
-                                                    <h1 class="font-bold text-gray-700 hover:underline">{{ $post->user->name }}</h1>
+                                                    <h1 class="font-bold text-gray-700 hover:underline">{{ $posted->user->name }}</h1>
                                                 </a>
+                                            @if(auth()->check())
+                                                @if(auth()->user()->getAuthIdentifier() === $posted->user->id)
+                                                    <a href="{{ route('posts.destroyed',$posted)}}" style="display: block !important; " class="mt-5">
+
+                                                        Supprimer</a>
+                                                @endif
+                                            @endif
                                         </div>
                                         <div class="mt-2">
                                             <p class="mt-2 text-gray-600">
-                                                {{ $post->content }}
+                                                {{ $posted->content }}
                                             </p>
                                         </div>
 
